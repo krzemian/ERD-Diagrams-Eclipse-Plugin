@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+     <extension point="org.eclipse.ui.editors">
+      <editor name="ERD Editor Example"
+              extensions="erd"
+              icon="erddiag.gif"
+              default="true"
+              class="e2s.ERDEditor"
+              contributorClass="e2s.ERDEditorActionBarContributor"
+              id="ERD Editor">
+      </editor>
+   </extension>
+   <extension point="org.eclipse.ui.newWizards">
+      <category name="ERD Diagrams"
+                id="e2s"/>
+      <wizard name="ERD2SQL"
+              icon="erddiag.gif"
+              category="e2s"
+              class="e2s.ERDCreationWizard"
+              id="e2s.ERDCreationWizard">
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.jdt.ui.PackageExplorer">
+         <command
+               commandId="ERDOutputGen.sql"
+               label="Generate SQL"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.jdt.ui.PackageExplorer">
+         <command
+               commandId="ERDOutputGen.pojo"
+               label="Generate POJO"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="e2s.handlers.SQLHandler"
+            id="ERDOutputGen.sql"
+            name="SQL">
+      </command>
+   </extension>
+      <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="e2s.handlers.POJOHandler"
+            id="ERDOutputGen.pojo"
+            name="POJO">
+      </command>
+   </extension>
+</plugin>
